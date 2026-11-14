@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>Portfolio — Layout Preview</title>
+  <script src="script.js"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="header-inner container">
+      <a class="brand" href="#intro" aria-label="Portfolio home">
+        <svg viewBox="0 0 32 32" width="32" height="32" aria-hidden="true"><path d="M5 5h10v10H5zM17 5h10v10H17zM5 17h10v10H5zM17 17h10v10H17z" fill="currentColor"/></svg>
+      </a>
+      <nav aria-label="Main navigation">
+        <a href="#intro">Intro</a>
+        <a href="#about">About</a>
+        <a href="#experience">Experience & training</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button class="theme-toggle" type="button" aria-label="Dark theme" aria-pressed="false" hidden>
+        <svg class="moon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M20.3 15.2A8.7 8.7 0 0 1 8.8 3.7a8.7 8.7 0 1 0 11.5 11.5Z"/></svg>
+        <svg class="sun" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="main" class="container" tabindex="-1">
+    <section id="intro" class="intro" aria-labelledby="intro-title">
+      <div class="intro-copy">
+        <span class="section-number" aria-hidden="true">01 /</span>
+        <h1 id="intro-title">Intro<span class="accent" aria-hidden="true">.</span></h1>
+        <div class="placeholder-lines" aria-hidden="true"><span></span><span></span><span></span></div>
+      </div>
+      <div class="intro-art" aria-hidden="true"><div class="orbit"></div><div class="art-core"></div><span class="art-dot"></span></div>
+    </section>
+
+    <section id="about" class="section split-section" aria-labelledby="about-title">
+      <div class="section-heading"><span class="section-number" aria-hidden="true">02 /</span><h2 id="about-title">About</h2></div>
+      <div class="placeholder-lines spacious" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+    </section>
+
+    <section id="experience" class="section" aria-labelledby="experience-title">
+      <div class="section-heading"><span class="section-number" aria-hidden="true">03 /</span><h2 id="experience-title">Experience <span class="muted">& training</span></h2></div>
+      <div class="experience-layout" aria-hidden="true">
+        <div class="experience-placeholder"><span class="timeline-dot"></span><div class="placeholder-lines"><span></span><span></span><span></span></div></div>
+        <div class="experience-placeholder"><span class="timeline-dot"></span><div class="placeholder-lines"><span></span><span></span><span></span></div></div>
+      </div>
+    </section>
+
+    <section id="projects" class="section" aria-labelledby="projects-title">
+      <div class="section-heading"><span class="section-number" aria-hidden="true">04 /</span><h2 id="projects-title">Projects</h2></div>
+      <div class="project-grid" aria-hidden="true">
+        <div class="project-placeholder"><div class="project-preview"><span class="preview-window"><i></i><i></i><i></i></span></div><div class="placeholder-lines"><span></span><span></span></div></div>
+        <div class="project-placeholder"><div class="project-preview alternate"><span class="preview-window"><i></i><i></i><i></i></span></div><div class="placeholder-lines"><span></span><span></span></div></div>
+      </div>
+    </section>
+
+    <section id="skills" class="section split-section" aria-labelledby="skills-title">
+      <div class="section-heading"><span class="section-number" aria-hidden="true">05 /</span><h2 id="skills-title">Skills</h2></div>
+      <div class="skill-placeholders" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+    </section>
+
+    <section id="contact" class="section contact" aria-labelledby="contact-title">
+      <div class="section-heading"><span class="section-number" aria-hidden="true">06 /</span><h2 id="contact-title">Contact<span class="accent" aria-hidden="true">.</span></h2></div>
+      <div class="placeholder-lines" aria-hidden="true"><span></span><span></span></div>
+    </section>
+  </main>
+</body>
+</html>
