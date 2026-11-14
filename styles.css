@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
 
+/* Components use color roles instead of fixed colors, so changing a palette updates
+   the whole page. When changing --muted, check text contrast in both themes. */
 :root {
   color-scheme: light;
   --bg: #f7f8f4;
@@ -13,6 +15,8 @@
   --header: rgb(247 248 244 / 95%);
 }
 
+/* Override only the palette when JavaScript changes data-theme; duplicating component
+   rules for dark mode would make future layout changes harder to keep consistent. */
 :root[data-theme="dark"] {
   color-scheme: dark;
   --bg: #151c18;
@@ -26,18 +30,29 @@
   --header: rgb(21 28 24 / 95%);
 }
 
+/* Count borders and padding inside declared widths, preventing a 100%-wide box
+   from becoming wider than its parent when padding is added. */
 * { box-sizing: border-box; }
+/* Anchor scrolling needs headroom because a sticky header can cover the destination.
+   Increase scroll-padding-top if the header becomes taller. */
 html { scroll-behavior: smooth; scroll-padding-top: 8rem; }
+/* System-font fallbacks keep text readable when the external web fonts cannot load. */
 body { margin: 0; background: var(--bg); color: var(--text); font-family: 'DM Sans', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
 button, a { -webkit-tap-highlight-color: transparent; }
 a { color: inherit; }
 button { font: inherit; }
 [hidden] { display: none !important; }
+/* A maximum width prevents very long lines on wide screens; the second min() value
+   leaves side gutters. Raising 1120px gives columns more room but also lengthens lines. */
 .container { width: min(1120px, calc(100% - 5rem)); margin-inline: auto; }
+/* Keep a visible focus indicator so keyboard users can locate the active control.
+   Moving the skip link offscreen instead of hiding it keeps it keyboard-accessible. */
 :focus-visible { outline: 3px solid var(--accent); outline-offset: 6px; border-radius: 3px; }
 .skip-link { position: fixed; top: 1rem; left: 1rem; z-index: 10; padding: .8rem 1rem; background: var(--text); color: var(--bg); transform: translateY(-180%); }
 .skip-link:focus { transform: translateY(0); }
 .site-header { position: sticky; top: 0; z-index: 5; background: var(--header); border-bottom: 1px solid var(--line); backdrop-filter: blur(14px); }
+/* Flexbox lets navigation use the remaining header space. Wrapping avoids squeezing
+   links into unreadable widths when fonts grow or screen space runs short. */
 .header-inner { display: flex; align-items: center; gap: 2rem; min-height: 96px; }
 .brand { display: grid; place-items: center; color: var(--accent); flex-shrink: 0; width: 44px; height: 44px; }
 nav { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: .25rem 1.5rem; margin-left: auto; }
@@ -47,25 +62,45 @@ nav a:hover, nav a:focus-visible { color: var(--text); text-decoration: underlin
 .theme-toggle:hover { background: var(--surface); }
 .sun, [data-theme="dark"] .moon { display: none; }
 [data-theme="dark"] .sun { display: block; }
+/* clamp() combines viewport scaling with size limits: a pure vw size could make
+   headings too small on phones or unnecessarily large on wide displays. */
 h1, h2 { font-family: 'Manrope', system-ui, sans-serif; font-weight: 500; letter-spacing: -.055em; margin: 0; }
 h1 { font-size: clamp(5rem, 11vw, 9rem); line-height: 1.1; margin-block: 1.4rem 2.6rem; }
 h2 { font-size: clamp(2rem, 4vw, 3.25rem); line-height: 1.2; }
 .accent { color: var(--accent); }
 .muted { color: var(--muted); }
 .section-number { font-size: .72rem; font-weight: 600; letter-spacing: .12em; color: var(--muted); }
-.intro { min-height: 590px; display: grid; grid-template-columns: 1.2fr 1fr; align-items: center; gap: 3rem; padding-block: 5rem; }
-.intro-copy { position: relative; z-index: 1; }
+/* The portrait column grows from 224px to 280px, giving it enough visual weight without
+   taking space needed by the name. minmax(0, 1fr) and min-width: 0 let text wrap inside
+   its column instead of forcing the page wider. Keep both items in normal Grid flow
+   so longer text increases the hero's height rather than overlapping the portrait. */
+.intro { display: grid; grid-template-columns: minmax(0, 1fr) clamp(14rem, 24vw, 17.5rem); align-items: center; gap: clamp(2rem, 4vw, 4rem); padding-block: clamp(3rem, 6vw, 5rem); }
+.intro-copy { position: relative; z-index: 1; min-width: 0; }
+/* Relax the shared headings' tight tracking for this multiword name. A small extra
+   word gap separates the initial without adding fake spaces to the HTML.
+   Avoid nowrap: natural wrapping protects narrow screens and enlarged text. */
+.intro-copy h1 { font-size: clamp(2.25rem, 4vw, 3.5rem); letter-spacing: -.015em; word-spacing: .04em; line-height: 1.15; overflow-wrap: anywhere; text-wrap: balance; margin-block: 1.25rem 1rem; }
+.intro-focus { color: var(--accent); font-size: clamp(1.1rem, 2vw, 1.4rem); font-weight: 600; line-height: 1.5; margin: 0 0 1.25rem; }
+.intro-summary, .about-copy p { color: var(--muted); font-size: 1rem; line-height: 1.8; margin: 0; }
+/* Cap line length independently of the grid so wide desktops do not produce long lines.
+   There is no fixed hero height: extra lines at smaller widths must have room to grow. */
+.intro-summary { max-width: 54ch; }
+.about-copy { min-width: 0; }
+.about-copy p + p { margin-top: 1.25rem; }
 .placeholder-lines { display: grid; gap: .8rem; width: 100%; max-width: 440px; }
 .placeholder-lines span { display: block; height: 9px; background: var(--placeholder); border-radius: 6px; }
 .placeholder-lines span:first-child { width: 88%; }
 .placeholder-lines span:nth-child(2) { width: 100%; }
 .placeholder-lines span:nth-child(3) { width: 67%; }
 .placeholder-lines span:nth-child(4) { width: 80%; }
-.intro-art { position: relative; width: min(100%, 360px); aspect-ratio: 1; justify-self: center; display: grid; place-items: center; }
-.orbit { position: absolute; inset: 0; border: 1px solid var(--line); border-radius: 50%; }
-.orbit::after { content: ''; position: absolute; inset: 26px; border: 1px solid var(--line); border-radius: 50%; }
-.art-core { width: 65%; height: 65%; background: var(--art); border-radius: 50% 50% 4% 50%; transform: rotate(-35deg); }
-.art-dot { position: absolute; width: 22px; height: 22px; background: var(--accent); border-radius: 50%; right: 9%; top: 12%; border: 5px solid var(--bg); box-sizing: content-box; }
+/* Reserve a square before the photo loads to prevent a layout jump. Equal sides make
+   50% corner radii circular rather than oval. The width cap stops the frame exceeding
+   its grid column; the column controls desktop sizing, not the image's original dimensions. */
+.intro-portrait { width: min(100%, 280px); min-width: 0; aspect-ratio: 1; justify-self: end; border: 1px solid var(--accent); border-radius: 50%; overflow: hidden; background: var(--surface); }
+/* The tall original cannot fill a square without cropping or distortion. cover chooses
+   cropping and preserves proportions. The 20% vertical position favors the upper image;
+   increasing it shifts the crop toward the lower body, so recheck the face after changes. */
+.intro-portrait img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 20%; }
 .section { padding-block: 5rem; border-top: 1px solid var(--line); }
 .section-heading { display: grid; gap: 1.3rem; margin-bottom: 3rem; }
 .split-section { display: grid; grid-template-columns: 1fr 1.3fr; align-items: start; gap: 4rem; }
@@ -87,24 +122,106 @@ h2 { font-size: clamp(2rem, 4vw, 3.25rem); line-height: 1.2; }
 .contact h2 { font-size: clamp(3.5rem, 8vw, 6rem); }
 .contact .placeholder-lines { max-width: 320px; }
 
+/* Real entries grow with their text rather than using fixed card heights, preventing
+   clipped descriptions when fonts enlarge. These classes leave hero styling untouched. */
+.entry-list, .skill-groups { display: grid; gap: 1.25rem; min-width: 0; }
+.content-card { min-width: 0; padding: clamp(1.25rem, 3vw, 2rem); background: var(--surface); border: 1px solid var(--line); border-radius: 12px; }
+.content-card h3, .skill-groups h3 { margin: 0 0 .8rem; font-family: 'Manrope', system-ui, sans-serif; font-size: 1.15rem; font-weight: 600; line-height: 1.45; letter-spacing: -.015em; overflow-wrap: anywhere; }
+.content-card p, .skill-groups p { max-width: 75ch; margin: 0; color: var(--muted); line-height: 1.8; overflow-wrap: anywhere; }
+.content-card p + p, .skill-groups p + p { margin-top: .75rem; }
+.content-card .entry-meta { margin-bottom: .75rem; color: var(--accent); font-size: .8rem; font-weight: 500; }
+.content-card .entry-organization { color: var(--text); font-weight: 500; margin-bottom: 1rem; }
+.skill-groups > div + div { border-top: 1px solid var(--line); padding-top: 1.25rem; }
+.skill-groups strong { color: var(--text); font-weight: 500; }
+/* Fit as many readable project columns as the container allows. The nested min()
+   lets a column shrink below 18rem on narrow phones instead of causing horizontal scroll. */
+.content-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr)); gap: 1.25rem; }
+
+/* Let cards wrap as space runs out, including below the preferred 18rem column width
+   on small phones. Scope these rules to certificates so other content keeps its layout. */
+.certificate-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr)); gap: 1.25rem; margin-top: 1.25rem; }
+.certificate-card { display: flex; flex-direction: column; }
+/* Auto margin aligns preview links when titles wrap to different heights. Native links
+   retain the site's keyboard focus outline; no hover-only control is required. */
+.certificate-link { display: block; margin-top: auto; padding-top: .5rem; color: var(--accent); text-decoration: none; border-radius: 4px; }
+/* contain shows the entire landscape or portrait certificate without clipping its text.
+   A shared preview shape keeps the gallery aligned while leaving the source files untouched. */
+.certificate-link img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: contain; background: var(--bg); border: 1px solid var(--line); border-radius: 6px; }
+.certificate-link > span { display: block; padding-top: .75rem; font-size: .8rem; line-height: 1.6; }
+.certificate-link:hover > span, .certificate-link:focus-visible > span { text-decoration: underline; text-underline-offset: .25em; }
+
+/* A single vertical timeline works at every width. Indent the text rather than fixing
+   its height, so descriptions can wrap without crossing the decorative line or dots.
+   role="list" in HTML keeps list semantics in browsers that hide them with list-style: none. */
+.training-stages { list-style: none; margin: 1.5rem 0 0; padding: 0; }
+.training-stage { position: relative; min-width: 0; padding: 0 0 1.75rem 1.5rem; border-left: 1px solid var(--line); }
+.training-stage:last-child { padding-bottom: 0; }
+.training-stage::before { content: ''; position: absolute; left: -5px; top: .4rem; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); }
+.training-stage h4 { margin: 0 0 .75rem; font-family: 'Manrope', system-ui, sans-serif; font-size: 1rem; font-weight: 600; line-height: 1.5; overflow-wrap: anywhere; }
+.content-card .stage-meta { margin-bottom: .4rem; color: var(--accent); font-size: .8rem; }
+
+/* Two contact columns become one when their preferred reading widths no longer fit.
+   The nested min() allows even a narrow phone to shrink below 20rem without overflow. */
+.contact-layout { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr)); align-items: start; gap: clamp(2rem, 5vw, 4rem); }
+.contact-copy { min-width: 0; }
+.contact-copy p { margin: 0; max-width: 48ch; color: var(--muted); line-height: 1.8; }
+.contact-primary { display: inline-flex; align-items: center; justify-content: center; gap: .65rem; min-height: 48px; max-width: 100%; margin-block: 1.5rem 1rem; padding: .8rem 1.4rem; border: 1px solid var(--accent); border-radius: 7px; background: var(--accent); color: var(--bg); font-weight: 600; text-decoration: none; }
+.contact-primary:hover { text-decoration: underline; text-underline-offset: .25em; }
+/* A long email address may have no natural spaces; allow wrapping rather than widening
+   the page. Icons keep their shape while the adjacent text can shrink or wrap. */
+.contact-email { overflow-wrap: anywhere; }
+.contact-copy .contact-location { display: flex; align-items: center; gap: .6rem; margin-top: 1rem; }
+.contact-primary svg, .contact-location svg { flex-shrink: 0; }
+.contact-profiles { display: grid; gap: 1rem; list-style: none; margin: 0; padding: 0; min-width: 0; }
+.contact-profiles a { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .5rem 1rem; min-height: 64px; padding: 1.25rem; border: 1px solid var(--line); border-radius: 9px; background: var(--surface); font-weight: 500; text-decoration: none; overflow-wrap: anywhere; }
+.contact-profiles a > span { color: var(--muted); font-size: .8rem; font-weight: 400; }
+.contact-profiles a:hover, .contact-profiles a:focus-visible { text-decoration: underline; text-underline-offset: .25em; }
+
+/* At 900px, navigation needs its own row. The hero can still fit two columns here;
+   its separate breakpoint below follows text space rather than the header's needs.
+   The taller header also needs more anchor-scroll headroom. */
 @media (max-width: 900px) {
   .header-inner { gap: 1rem; flex-wrap: wrap; padding-block: 1rem; }
   .theme-toggle { margin-left: auto; }
   nav { order: 3; width: 100%; justify-content: flex-start; margin: 0; gap: 0 1.5rem; }
   nav a { padding-block: .55rem; }
   html { scroll-padding-top: 12rem; }
-  .intro { min-height: 500px; gap: 1.5rem; }
+  /* A smaller portrait column leaves tablet text readable instead of squeezing it
+     into many short lines. Reducing the gap also preserves space for the full name. */
+  .intro { grid-template-columns: minmax(0, 1fr) 14rem; gap: 2rem; }
   .split-section { gap: 2rem; }
 }
 
+/* At 760px and below, one centered column gives text enough reading width.
+   Grid rows put the portrait first visually without duplicating the image or introduction
+   in HTML. Screen readers still follow the HTML's text-first reading order; neither
+   grid item contains controls, so this does not reorder keyboard focus. */
+@media (max-width: 760px) {
+  .intro { grid-template-columns: minmax(0, 1fr); justify-items: center; gap: 1.25rem; text-align: center; }
+  .intro-copy { grid-row: 2; width: 100%; max-width: 38rem; }
+  /* Smaller mobile margins keep the portrait, name, and role connected. Use spacing,
+     not fixed heights, so wrapped headings and enlarged text can still grow freely. */
+  .intro-copy h1 { margin-block: .75rem .625rem; }
+  .intro-focus { margin-bottom: .75rem; }
+  .intro-summary { margin-inline: auto; }
+  .intro-portrait { grid-row: 1; width: min(100%, 224px); justify-self: center; }
+}
+
+/* At 600px, multiple content columns become cramped. Stack them and reduce gutters
+   instead of shrinking body text, preserving readability on narrow screens. */
 @media (max-width: 600px) {
   .container { width: calc(100% - 2.5rem); }
   .header-inner { min-height: auto; }
   nav { gap: 0 1.15rem; }
   nav a { font-size: .77rem; }
-  .intro { grid-template-columns: 1fr; padding-block: 3rem; gap: 3rem; }
+  /* Content determines height; smaller padding avoids an unnecessarily tall mobile hero.
+     Keep the single shrinkable column from the 760px rule to handle enlarged text. */
+  .intro { padding-block: 2.5rem; }
   h1 { margin-block: 1rem 2rem; }
-  .intro-art { width: 210px; justify-self: end; margin-right: 1rem; }
+  /* Fluid sizing keeps the portrait proportional to the screen, with a 200px cap.
+     min(100%, ...) still allows shrinking below 160px if the container becomes very narrow.
+     The square frame keeps the same crop proportions at every size. */
+  .intro-portrait { width: min(100%, clamp(160px, 48vw, 200px)); }
   .section { padding-block: 3rem; }
   .split-section, .experience-layout, .project-grid { grid-template-columns: 1fr; gap: 2rem; }
   .section-heading { margin-bottom: 2rem; }
@@ -112,6 +229,7 @@ h2 { font-size: clamp(2rem, 4vw, 3.25rem); line-height: 1.2; }
   .contact { padding-bottom: 4rem; }
 }
 
+/* Smooth scrolling can be uncomfortable for motion-sensitive visitors; honor their preference. */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
 }
