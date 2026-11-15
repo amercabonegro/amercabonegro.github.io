@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>NAVCO Intern Monitoring System | Amer Cabonegro</title>
+  <meta name="description" content="A self-initiated intern monitoring project built by Amer Cabonegro during a 2022 IT Support internship using Google Forms, Sheets, and Apps Script.">
+  <link rel="icon" type="image/svg+xml" sizes="any" href="../../assets/icons/favicon.svg">
+  <!-- Reuse the early theme setup and shared palette so saved preferences carry
+       between pages. Relative paths also work under a GitHub Pages project URL. -->
+  <script src="../../script.js"></script>
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="case-study.css">
+</head>
+<body class="case-page">
+  <a class="skip-link" href="#main">Skip to case study</a>
+  <header class="site-header">
+    <div class="header-inner container case-header">
+      <a class="brand" href="../../index.html" aria-label="Amer Cabonegro portfolio home">
+        <svg viewBox="0 0 32 32" width="32" height="32" aria-hidden="true"><path d="M5 5h10v10H5zM17 5h10v10H17zM5 17h10v10H5zM17 17h10v10H17z" fill="currentColor"/></svg>
+      </a>
+      <a class="case-back" href="../index.html"><span aria-hidden="true">&larr;</span> All Projects</a>
+      <button class="theme-toggle" type="button" aria-label="Dark theme" aria-pressed="false" hidden>
+        <svg class="moon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M20.3 15.2A8.7 8.7 0 0 1 8.8 3.7a8.7 8.7 0 1 0 11.5 11.5Z"/></svg>
+        <svg class="sun" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="main" class="container case-main" tabindex="-1">
+    <article aria-labelledby="project-title">
+      <header class="case-hero">
+        <p class="case-eyebrow">Project case study <span aria-hidden="true">/</span> <time datetime="2022">2022</time></p>
+        <h1 id="project-title">NAVCO Intern<br class="case-title-break"> Monitoring System</h1>
+        <p class="case-subtitle">Self-Initiated Workflow Automation Project</p>
+        <p class="case-lead">From manually tracked attendance to a Google Workspace workflow for intern registration, attendance records, and accumulated working hours.</p>
+        <dl class="case-facts">
+          <div><dt>Organization</dt><dd>Nauts &amp; Vectors Company, Inc.</dd></div>
+          <div><dt>Role</dt><dd>IT Support Intern / Project Developer</dd></div>
+          <div><dt>Context</dt><dd>200-hour internship &middot; 2022</dd></div>
+          <div><dt>Technologies</dt><dd>Google Forms, Google Sheets, Google Apps Script, JavaScript</dd></div>
+        </dl>
+      </header>
+
+      <!-- Native anchor links need no additional JavaScript or custom keyboard model. -->
+      <nav class="case-index" aria-label="Case study highlights">
+        <a href="#overview">Overview</a>
+        <a href="#development">Development journey</a>
+        <a href="#architecture">Architecture</a>
+        <a href="#results">Adoption &amp; results</a>
+      </nav>
+
+      <section id="overview" class="case-section" aria-labelledby="overview-title">
+        <div class="case-heading"><span class="section-number" aria-hidden="true">01 /</span><h2 id="overview-title">Project overview</h2></div>
+        <div class="case-copy">
+          <p>I independently developed an intern monitoring system during my 200-hour IT Support internship at Nauts &amp; Vectors Company, Inc. in 2022.</p>
+          <p>The project was not part of my assigned responsibilities. I independently identified the problem after observing HR personnel manually monitoring internship attendance and calculating accumulated working hours, then voluntarily developed the system to help HR.</p>
+        </div>
+      </section>
+
+      <section id="problem" class="case-section" aria-labelledby="problem-title">
+        <div class="case-heading"><span class="section-number" aria-hidden="true">02 /</span><h2 id="problem-title">The problem</h2></div>
+        <div class="case-copy">
+          <p>Interns reported their time-in and time-out information through messaging platforms. HR personnel maintained the attendance records and manually calculated accumulated internship hours.</p>
+          <p>This workflow required HR to bring attendance information together from messages and calculate each intern's progress toward their required hours.</p>
+        </div>
+      </section>
+
+      <section id="initiative" class="case-section" aria-labelledby="initiative-title">
+        <div class="case-heading"><span class="section-number" aria-hidden="true">03 /</span><h2 id="initiative-title">My initiative</h2></div>
+        <div class="case-copy">
+          <p>I voluntarily researched Google Workspace and taught myself Google Apps Script to explore a more structured approach. I started with a spreadsheet prototype, then refined how attendance was entered, stored, and retrieved.</p>
+          <p>The focus was a practical solution to an observed problem: helping HR access intern records and monitor working hours through a shared workflow.</p>
+        </div>
+      </section>
+
+      <section id="development" class="case-section" aria-labelledby="development-title">
+        <div class="case-heading"><span class="section-number" aria-hidden="true">04 /</span><h2 id="development-title">Development journey</h2></div>
+        <!-- An ordered list keeps the progression understandable without the visual
+             timeline. Stages grow with their content rather than using fixed heights. -->
+        <ol class="case-timeline" role="list">
+          <li>
+            <p class="case-eyebrow">Version 1</p>
+            <h3>A working starting point</h3>
+            <p>I built an initial Google Sheets and Apps Script prototype to explore attendance recording and working-hour calculations.</p>
+          </li>
+          <li>
+            <p class="case-eyebrow">Version 2</p>
+            <h3>Six spreadsheet modules</h3>
+            <p>I expanded the spreadsheet-based system into six modules:</p>
+            <ul class="case-module-list">
+              <li>Intern Data Entry Form</li><li>Attendance</li><li>Attendance Database</li>
+              <li>Intern Database</li><li>Trash &ndash; Intern Database</li><li>Data Source</li>
+            </ul>
+          </li>
+          <li>
+            <p class="case-eyebrow">Version 3</p>
+            <h3>Forms for shared data entry</h3>
+            <p>Direct spreadsheet entry was unsuitable for multiple interns submitting attendance records. I redesigned data entry using Google Forms, with these final components:</p>
+            <ul class="case-module-list">
+              <li>Intern Registration Form</li><li>Time-In/Time-Out Form</li><li>Registration Database</li>
+              <li>Attendance Database</li><li>Summary Dashboard</li>
+            </ul>
+          </li>
+        </ol>
+      </section>
+
+      <section id="architecture" class="case-section" aria-labelledby="architecture-title">
+        <div class="case-heading"><span class="section-number" aria-hidden="true">05 /</span><h2 id="architecture-title">System architecture</h2></div>
+        <div class="case-copy">
+          <p>Separate registration and attendance inputs feed the Google Sheets workflow. HR searches for an intern using an email address, and Google Apps Script retrieves the intern's information and matching attendance records. The registration and attendance databases described in the development timeline are spreadsheet records, not a dedicated database backend.</p>
+          <p>The script calculates daily working hours as Time Out minus Time In. It deducts one hour when that duration exceeds four hours, then calculates accumulated internship hours. This deduction is an implemented calculation rule, not a statement of legal requirements or a universally appropriate break policy.</p>
+          <!-- Each form has its own record collection. The shared spreadsheet is
+               storage; the Summary interface initiates search, not form submission.
+               Lists and explanatory text preserve these relationships without arrows. -->
+          <figure class="case-diagram">
+            <div class="case-inputs">
+              <ol class="case-flow" aria-label="Registration flow" role="list">
+                <li>Intern Registration Form</li><li>Registration Records<br><span>&ldquo;DATA ENTRY FORM&rdquo; sheet</span></li>
+              </ol>
+              <ol class="case-flow" aria-label="Attendance flow" role="list">
+                <li>Time In &amp; Out Form</li><li>Attendance Records<br><span>&ldquo;TIME IN &amp; OUT&rdquo; sheet</span></li>
+              </ol>
+            </div>
+            <p class="case-sheet"><strong>Google Sheets</strong><br>One spreadsheet containing both record collections</p>
+            <p class="case-search-trigger"><strong>Search initiated from Summary:</strong> HR enters an intern's email address in the Summary interface to start the lookup.</p>
+            <ol class="case-flow case-processing" aria-label="Summary-initiated lookup and update" role="list">
+              <li>Apps Script Search<span>Searches both collections, retrieves matches, and calculates accumulated working hours</span></li>
+              <li>Intern Summary<span>Updated with matching intern information, attendance records, and accumulated hours</span></li>
+            </ol>
+            <figcaption>The two Google Forms independently store submissions in separate sheets within the same spreadsheet. HR initiates Apps Script search through Summary; this diagram does not represent immediate processing of every form submission.</figcaption>
+          </figure>
+          <h3 class="case-preview-title">Workflow Automation and Notifications</h3>
+          <p>I configured the Google Forms Form Notifications add-on for the NAVCO Intern Data Entry Form. Registration submissions triggered an automated acknowledgement: a welcome email to the registrant containing a message from NAVCO's IT Department. A welcome email received in November 2026 provides evidence that this add-on automation was still operating at that time, years after its initial configuration.</p>
+          <p>I also configured Zapier and Slack submission notifications during my internship. My recollection is that these covered intern registration and attendance or working-hour form submissions to notify staff when responses arrived. The original Zapier account and configuration are no longer available for independent verification. My 2022 internship narrative documents Zapier and Slack usage for a separate IT Helpdesk workflow; it does not independently confirm both Intern Monitoring notification triggers.</p>
+          <p>These automations depended on third-party services and their usage limits. I recall that Zapier usage limits eventually prevented the original submission notifications from continuing. I cannot independently verify the historical configuration or confirm that Slack notifications are operating today.</p>
+          <h3 class="case-preview-title">System development in screenshots</h3>
+          <p>Follow the progression from spreadsheet entry to a monitoring dashboard and Google Forms. Open any screenshot at full size to inspect the interface details.</p>
+          <div class="case-previews">
+            <section class="case-screenshot-phase" aria-labelledby="prototype-screenshot-title">
+              <h4 id="prototype-screenshot-title">Phase 1 &mdash; Initial Prototype</h4>
+              <figure class="case-preview">
+                <a class="case-screenshot-link" href="images/Navco_Intern_Monitoring_System_Trial.jpeg" target="_blank" rel="noopener noreferrer">
+                  <img src="images/Navco_Intern_Monitoring_System_Trial.jpeg" alt="Google Sheets registration prototype with name, school, department, and required-hours fields, Save and Delete buttons, and a table of test entries." width="1794" height="900" loading="lazy" decoding="async">
+                  <span>Open registration prototype full size (new tab) <span aria-hidden="true">&nearr;</span></span>
+                </a>
+                <figcaption>The initial Google Sheets registration prototype used direct spreadsheet entry. The table shows trial entries used during development.</figcaption>
+              </figure>
+            </section>
+            <section class="case-screenshot-phase" aria-labelledby="dashboard-screenshot-title">
+              <h4 id="dashboard-screenshot-title">Phase 2 &mdash; Intern Monitoring Dashboard</h4>
+              <figure class="case-preview">
+                <a class="case-screenshot-link" href="images/Navco_Intern_Monitoring_System_Anonymized.png" target="_blank" rel="noopener noreferrer">
+                  <img src="images/Navco_Intern_Monitoring_System_Anonymized.png" alt="Anonymized demonstration of the Google Sheets dashboard showing email-based search, attendance history, working hours, and an intern details summary." width="1755" height="896" loading="lazy" decoding="async">
+                  <span>Open anonymized dashboard full size (new tab) <span aria-hidden="true">&nearr;</span></span>
+                </a>
+                <figcaption>Anonymized demonstration: the monitoring dashboard brings together an intern's details, attendance history, and accumulated working hours. The information shown is anonymized.</figcaption>
+              </figure>
+            </section>
+            <section class="case-screenshot-phase" aria-labelledby="forms-screenshot-title">
+              <h4 id="forms-screenshot-title">Phase 3 &mdash; Google Forms Integration</h4>
+              <figure class="case-preview">
+                <a class="case-screenshot-link" href="images/Navco_Intern_Data_Entry_Form.jpeg" target="_blank" rel="noopener noreferrer">
+                  <img src="images/Navco_Intern_Data_Entry_Form.jpeg" alt="Blank intern registration Google Form with fields for email, name, gender, school, department, contact number, and total hours needed." width="1794" height="1810" loading="lazy" decoding="async">
+                  <span>Open registration form full size (new tab) <span aria-hidden="true">&nearr;</span></span>
+                </a>
+                <figcaption>The registration Google Form replaced direct spreadsheet entry for collecting intern details and required internship hours.</figcaption>
+              </figure>
+              <figure class="case-preview">
+                <a class="case-screenshot-link" href="images/Navco_Intern_Time_In_and_Out.jpeg" target="_blank" rel="noopener noreferrer">
+                  <img src="images/Navco_Intern_Time_In_and_Out.jpeg" alt="Blank attendance Google Form with fields for email, name, date, time in, time out, and work setup." width="1794" height="1447" loading="lazy" decoding="async">
+                  <span>Open attendance form full size (new tab) <span aria-hidden="true">&nearr;</span></span>
+                </a>
+                <figcaption>The Time-In/Time-Out Google Form collects attendance submissions, including the date, time in, time out, and work setup.</figcaption>
+              </figure>
+            </section>
+          </div>
+        </div>
+      </section>
+
+      <section id="features" class="case-section" aria-labelledby="features-title">
+        <div class="case-heading"><span class="section-number" aria-hidden="true">06 /</span><h2 id="features-title">Key features</h2></div>
+        <ul class="case-feature-list">
+          <li>Intern registration</li><li>Attendance recording</li><li>Email-based record searching</li>
+          <li>Attendance history retrieval</li><li>Automated working-hour calculations</li>
+          <li>Accumulated-hour monitoring</li><li>Administrative summary interface</li>
+        </ul>
+      </section>
+
+      <section id="results" class="case-section" aria-labelledby="results-title">
+        <div class="case-heading"><span class="section-number" aria-hidden="true">07 /</span><h2 id="results-title">Adoption &amp; results</h2></div>
+        <div class="case-copy">
+          <p>I independently initiated the system to address the attendance-monitoring problem I observed during my internship, then demonstrated it to HR personnel, who adopted it. It provides searchable intern records and automated working-hour calculations through a spreadsheet interface.</p>
+          <p class="case-observation">Verified from Google Sheets records in <time datetime="2026-11">November 2026</time></p>
+          <dl class="case-results">
+            <div><dt>Recorded Attendance Submissions</dt><dd>8,884</dd></div>
+            <div><dt>Populated Registration Spreadsheet Records</dt><dd>170</dd></div>
+            <div><dt>Distinct Registered Email Addresses</dt><dd>166</dd></div>
+            <div><dt>Distinct Email Addresses in Attendance Records</dt><dd>253</dd></div>
+          </dl>
+          <p>The first recorded attendance submission was on <time datetime="2022-07-28">July 28, 2022</time>, and the latest was on <time datetime="2026-11-14">November 14, 2026</time>, demonstrating continued submissions years after the internship.</p>
+          <p class="case-result-note">These are populated spreadsheet record and distinct email-address counts. They do not establish unique individual interns, completed workdays, validated attendance, or successfully completed internships, and do not measure productivity improvements or hours saved by HR. Earlier Google Forms response totals differ from the verified spreadsheet counts; the cause has not been established.</p>
+        </div>
+      </section>
+
+      <section id="challenges" class="case-section" aria-labelledby="challenges-title">
+        <div class="case-heading"><span class="section-number" aria-hidden="true">08 /</span><h2 id="challenges-title">Technical challenges</h2></div>
+        <div class="case-copy">
+          <p>I had to learn Google Apps Script independently while debugging spreadsheet automation and improving the user interface.</p>
+          <p>A key design challenge was recognizing the limits of direct spreadsheet entry for multiple interns. Moving data entry to Google Forms changed the interaction: interns could submit a form while the spreadsheet remained the place for records and administrative summaries.</p>
+          <h3 class="case-preview-title">Known limitations</h3>
+          <p>The original system was a practical internship project. Subsequent review of the implementation and historical records identified these limitations:</p>
+          <ul class="case-improvement-list">
+            <li>Duplicate registration records exist, and registration uniqueness is not enforced.</li>
+            <li>Duplicate attendance prevention is limited; a repeated submission is not necessarily an error.</li>
+            <li>Date and time validation is limited.</li>
+            <li>There is no built-in attendance correction or approval workflow.</li>
+            <li>The original system does not automatically generate PDF or Excel reports.</li>
+            <li>Google Sheets serves as the record storage and attendance-monitoring interface; there is no dedicated database backend.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="improvements" class="case-section" aria-labelledby="improvements-title">
+        <div class="case-heading"><span class="section-number" aria-hidden="true">09 /</span><h2 id="improvements-title">Future improvements</h2></div>
+        <div class="case-copy">
+          <p>The following are proposed improvements for a potential future version, not features implemented in the original system:</p>
+          <ul class="case-improvement-list">
+            <li>Unique intern identifiers and duplicate registration prevention.</li>
+            <li>Repeated attendance detection, date and time validation, and support for legitimate overnight shifts.</li>
+            <li>Attendance correction requests with HR review and approval workflows.</li>
+            <li>Secure authentication and role-based access.</li>
+            <li>Audit logs for important record changes.</li>
+            <li>Automated PDF and Excel reporting.</li>
+            <li>A clear distinction between recorded hours and HR-verified hours.</li>
+            <li>Improved data storage architecture and maintainability.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="reflection" class="case-section" aria-labelledby="reflection-title">
+        <div class="case-heading"><span class="section-number" aria-hidden="true">10 /</span><h2 id="reflection-title">Reflection</h2></div>
+        <div class="case-copy">
+          <p>This project strengthened my interest in software development, automation, and practical problem-solving. It showed me how observing an everyday administrative difficulty could lead to a useful software project, even outside my assigned responsibilities.</p>
+          <p>Moving from a spreadsheet prototype to form-based data entry taught me to translate operational requirements into a practical interface for the people using it. Reviewing the system years later reinforced that functional software still needs validation, maintenance, and careful handling of data. I want to apply these lessons to future development work and design for long-term use.</p>
+        </div>
+      </section>
+    </article>
+    <footer class="case-footer"><p>Amer M. Cabonegro <span aria-hidden="true">/</span> Project case study</p><a href="../index.html"><span aria-hidden="true">&larr;</span> All Projects</a><a href="../../index.html">Home <span aria-hidden="true">&rarr;</span></a></footer>
+  </main>
+</body>
+</html>

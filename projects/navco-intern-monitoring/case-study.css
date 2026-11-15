@@ -1,0 +1,96 @@
+/* Import the shared stylesheet in HTML first. Page-scoped selectors keep this
+   presentation independent of the homepage while inheriting both theme palettes. */
+.case-page { line-height: 1.7; }
+.case-header { flex-wrap: nowrap; gap: 1rem; }
+.case-header .case-back { margin-left: auto; }
+.case-header .theme-toggle { margin-left: 0; }
+.case-back { display: inline-flex; align-items: center; gap: .5rem; min-height: 44px; font-size: .875rem; color: var(--text); text-decoration: none; }
+.case-back:hover, .case-back:focus-visible { text-decoration: underline; text-underline-offset: .3em; }
+.case-main { min-width: 0; }
+.case-hero { padding-block: clamp(3rem, 6vw, 5rem); }
+.case-eyebrow { margin: 0 0 .75rem; color: var(--accent); font-size: .75rem; font-weight: 600; letter-spacing: .08em; }
+.case-hero h1 { max-width: 19ch; margin: 0; font-size: clamp(2.3rem, 5.5vw, 4.5rem); line-height: 1.12; letter-spacing: -.035em; overflow-wrap: anywhere; }
+.case-subtitle { margin: 1.5rem 0 .75rem; color: var(--accent); font-size: clamp(1rem, 2vw, 1.25rem); font-weight: 500; }
+.case-lead { max-width: 65ch; margin: 0; color: var(--muted); }
+.case-facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem 2.5rem; margin: 2.5rem 0 0; padding-top: 1.5rem; border-top: 1px solid var(--line); }
+.case-facts dt { margin-bottom: .35rem; color: var(--muted); font-size: .8rem; }
+.case-facts dd { margin: 0; overflow-wrap: anywhere; }
+.case-index { justify-content: flex-start; gap: .25rem 1.5rem; margin: 0; padding-block: .75rem; border-top: 1px solid var(--line); }
+.case-index a { display: inline-flex; align-items: center; min-height: 44px; padding-block: .5rem; color: var(--text); font-size: .875rem; }
+.case-section { display: grid; grid-template-columns: minmax(0, .75fr) minmax(0, 1.7fr); gap: 3rem; padding-block: clamp(2.5rem, 5vw, 4rem); border-top: 1px solid var(--line); }
+.case-section > * { min-width: 0; }
+.case-heading { display: grid; align-content: start; gap: 1rem; }
+.case-heading h2 { font-size: clamp(1.65rem, 3vw, 2.25rem); letter-spacing: -.035em; }
+.case-copy p { margin: 0; color: var(--muted); }
+.case-copy p + p { margin-top: 1rem; }
+.case-page h3 { margin: 0 0 .75rem; font-family: 'Manrope', system-ui, sans-serif; font-size: 1.1rem; font-weight: 600; letter-spacing: -.015em; line-height: 1.45; }
+.case-copy, .case-timeline, .case-feature-list { overflow-wrap: anywhere; }
+.case-timeline { list-style: none; margin: 0; padding: 0 0 0 .35rem; }
+.case-timeline > li { position: relative; padding: 0 0 2.5rem 1.75rem; border-left: 1px solid var(--line); }
+.case-timeline > li:last-child { padding-bottom: 0; }
+.case-timeline > li::before { content: ''; position: absolute; left: -.3rem; top: .35rem; width: .55rem; height: .55rem; border-radius: 50%; background: var(--accent); }
+.case-timeline p:not(.case-eyebrow) { margin: 0; color: var(--muted); }
+.case-module-list, .case-improvement-list { margin: 1rem 0 0; padding-left: 1.25rem; color: var(--muted); }
+.case-module-list li + li, .case-improvement-list li + li { margin-top: .35rem; }
+.case-diagram { margin: 1.5rem 0 2rem; padding: clamp(1rem, 3vw, 1.5rem); border: 1px solid var(--line); border-radius: 12px; background: var(--surface); }
+/* Keep the independent input branches side by side even on phones, so stacking
+   cannot imply registration flows into attendance. Labels wrap within each branch.
+   Decorative connectors converge on the one spreadsheet; text explains the lookup. */
+.case-inputs { position: relative; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; padding-bottom: 2rem; }
+.case-inputs::after { content: ''; position: absolute; left: 25%; right: 25%; bottom: .75rem; border-bottom: 1px solid var(--accent); }
+.case-inputs::before { content: ''; position: absolute; left: 50%; bottom: 0; height: .75rem; border-left: 1px solid var(--accent); }
+.case-flow { display: grid; gap: 1.75rem; list-style: none; margin: 0; padding: 0; }
+.case-flow li { position: relative; display: grid; align-content: center; min-height: 64px; padding: .75rem; border: 1px solid var(--line); border-radius: 7px; background: var(--bg); color: var(--text); font-size: .875rem; text-align: center; }
+.case-flow li:not(:last-child)::after { content: ''; position: absolute; left: calc(50% - 4px); bottom: -1.1rem; width: 8px; height: 8px; border-right: 1px solid var(--accent); border-bottom: 1px solid var(--accent); transform: rotate(45deg); }
+.case-inputs .case-flow li:last-child::after { content: ''; position: absolute; left: calc(50% - 4px); bottom: -1.1rem; width: 8px; height: 8px; border-right: 1px solid var(--accent); border-bottom: 1px solid var(--accent); transform: rotate(45deg); }
+.case-diagram .case-flow li { min-width: 0; overflow-wrap: anywhere; }
+.case-diagram .case-flow li > span { display: block; margin-top: .35rem; font-size: .8rem; color: var(--muted); }
+.case-diagram .case-sheet { margin: 0; padding: 1rem; border: 1px solid var(--accent); border-radius: 7px; background: var(--bg); color: var(--text); text-align: center; font-size: .875rem; }
+.case-diagram .case-search-trigger { margin: 1.25rem 0; font-size: .875rem; }
+.case-processing { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; }
+.case-processing li:not(:last-child)::after { left: auto; right: -.95rem; bottom: calc(50% - 4px); transform: rotate(-45deg); }
+.case-page figcaption { margin-top: .875rem; color: var(--muted); font-size: .8rem; line-height: 1.65; }
+.case-copy .case-preview-title { margin-top: 2rem; }
+/* Keep screenshots in one shrinkable column rather than small thumbnail cards.
+   Natural image height preserves every field; full-size links allow closer inspection
+   on phones without forcing the page itself to scroll horizontally. */
+.case-previews { display: grid; grid-template-columns: minmax(0, 1fr); gap: 2.5rem; margin-top: 1.5rem; }
+.case-screenshot-phase { min-width: 0; }
+.case-screenshot-phase h4 { margin: 0 0 1rem; color: var(--accent); font-family: 'Manrope', system-ui, sans-serif; font-size: 1rem; font-weight: 600; line-height: 1.5; }
+.case-preview { min-width: 0; margin: 0; }
+.case-preview + .case-preview { margin-top: 1.75rem; }
+.case-screenshot-link { display: block; border: 1px solid var(--line); border-radius: 9px; background: var(--surface); color: var(--accent); text-decoration: none; }
+.case-screenshot-link img { display: block; width: 100%; max-width: 100%; height: auto; border-radius: 8px 8px 0 0; }
+.case-screenshot-link > span { display: flex; align-items: center; justify-content: space-between; gap: .75rem; min-height: 44px; padding: .75rem 1rem; font-size: .875rem; line-height: 1.6; }
+.case-screenshot-link:hover > span, .case-screenshot-link:focus-visible > span { text-decoration: underline; text-underline-offset: .25em; }
+.case-feature-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-content: start; gap: .875rem 2rem; margin: 0; padding-left: 1.25rem; color: var(--text); }
+.case-feature-list li::marker { color: var(--accent); }
+.case-copy .case-observation { margin-top: 1.5rem; color: var(--accent); font-size: .8rem; }
+.case-results { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin: 1rem 0; }
+.case-results > div { display: flex; flex-direction: column; padding: 1.25rem; border: 1px solid var(--line); border-radius: 9px; background: var(--surface); }
+.case-results dt { color: var(--text); font-size: .875rem; }
+/* Reverse only the two parts of each statistic visually: the definition list
+   still reads label then value, keeping the response counts unambiguous in speech. */
+.case-results dd { order: -1; margin: 0 0 .5rem; color: var(--accent); font-family: 'Manrope', system-ui, sans-serif; font-size: clamp(2rem, 4vw, 3rem); line-height: 1.2; }
+.case-copy .case-result-note { font-size: .875rem; }
+.case-footer { display: flex; justify-content: space-between; flex-wrap: wrap; align-items: center; gap: 1rem; padding-block: 2rem 3rem; border-top: 1px solid var(--line); font-size: .875rem; }
+.case-footer p { margin: 0; color: var(--muted); }
+.case-footer a { display: inline-flex; align-items: center; gap: .5rem; min-height: 44px; color: var(--accent); text-underline-offset: .3em; }
+@media (max-width: 900px) {
+  .case-section { grid-template-columns: minmax(0, 1fr); gap: 1.5rem; }
+  .case-heading { gap: .75rem; }
+}
+/* Stack at the point where labels and diagram nodes lose comfortable reading
+   space. Zero-minimum columns and wrapping prevent long labels widening the page. */
+@media (max-width: 600px) {
+  .case-header { gap: .5rem; }
+  .case-back { font-size: .8rem; }
+  .case-hero { padding-block: 2.5rem; }
+  .case-title-break { display: none; }
+  .case-facts, .case-feature-list, .case-results { grid-template-columns: minmax(0, 1fr); }
+  .case-processing { grid-template-columns: minmax(0, 1fr); gap: 1.75rem; }
+  .case-processing li:not(:last-child)::after { left: calc(50% - 4px); right: auto; bottom: -1.1rem; transform: rotate(45deg); }
+  .case-index { column-gap: 1rem; }
+}
+/* Reduced-motion support comes from the shared stylesheet. No additional motion
+   or JavaScript is needed for this page's timeline, diagram, or screenshots. */

@@ -247,3 +247,28 @@ h2 { font-size: clamp(2rem, 4vw, 3.25rem); line-height: 1.2; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
 }
+
+/* Project actions have their own layout: certificate captions deliberately stack,
+   but these links keep the arrow beside the text. The label can wrap inside the
+   flex row on narrow screens without sending the arrow to a separate line. */
+.project-link { display: inline-flex; align-items: center; gap: .5rem; max-width: 100%; min-height: 44px; padding-block: .75rem; color: var(--accent); font-size: .875rem; font-weight: 500; text-decoration: none; text-underline-offset: .25em; }
+.project-link-label { min-width: 0; overflow-wrap: anywhere; }
+.project-link > [aria-hidden] { flex-shrink: 0; }
+.project-link:hover, .project-link:focus-visible { text-decoration: underline; }
+.projects-all { margin: 1.75rem 0 0; }
+.projects-all .project-link { padding: .75rem 1.25rem; border: 1px solid var(--accent); border-radius: 7px; }
+.projects-all .project-link:hover { background: var(--surface); }
+
+/* Reuse the shared palettes, cards and shrinkable auto-fit grid so adding a
+   project requires only another article, not a new breakpoint or script. */
+.projects-header { flex-wrap: nowrap; gap: 1rem; }
+.projects-header .theme-toggle { margin-left: 0; }
+.projects-home-nav { margin-left: auto; }
+.projects-home-nav a { display: inline-flex; align-items: center; gap: .5rem; min-height: 44px; padding-block: .5rem; color: var(--text); }
+.projects-main { padding-block: clamp(3rem, 6vw, 5rem); }
+.projects-intro { max-width: 65ch; margin-bottom: 2.5rem; }
+.projects-intro h1 { margin: 0 0 1.25rem; font-size: clamp(3rem, 6vw, 5rem); }
+.projects-intro p { margin: 0; color: var(--muted); line-height: 1.8; }
+.projects-list .content-card { display: flex; flex-direction: column; align-items: flex-start; }
+.projects-list .content-card h2 { margin: 0 0 .8rem; font-size: clamp(1.35rem, 3vw, 1.75rem); line-height: 1.4; letter-spacing: -.025em; overflow-wrap: anywhere; }
+.projects-list .project-link { margin-top: auto; padding-top: 1.25rem; }
