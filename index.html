@@ -11,6 +11,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light dark">
   <title>Amer Cabonegro | Portfolio</title>
+  <meta name="description" content="Amer Cabonegro, BS Information Technology graduate with web development and IT Support experience, interested in AI-assisted software development.">
+  <link rel="canonical" href="https://amercabonegro.github.io/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Amer Cabonegro | Portfolio">
+  <meta property="og:description" content="Amer Cabonegro, BS Information Technology graduate with web development and IT Support experience, interested in AI-assisted software development.">
+  <meta property="og:url" content="https://amercabonegro.github.io/">
+  <meta property="og:image" content="https://amercabonegro.github.io/assets/images/portfolio-social.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Amer M. Cabonegro — Software Development • IT Support • Exploring AI. amercabonegro.github.io">
+  <!-- Social crawlers need a public absolute image URL. X reuses the Open Graph
+       title and description while requesting the larger image presentation. -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://amercabonegro.github.io/assets/images/portfolio-social.png">
+  <meta name="twitter:image:alt" content="Amer M. Cabonegro — Software Development • IT Support • Exploring AI. amercabonegro.github.io">
   <!-- The favicon identifies this portfolio among browser tabs. A relative path keeps
        it inside the repository's subdirectory when hosted on GitHub Pages. -->
   <link rel="icon" type="image/svg+xml" sizes="any" href="assets/icons/favicon.svg">
@@ -27,7 +43,17 @@
       <a class="brand" href="#intro" aria-label="Portfolio home">
         <svg viewBox="0 0 32 32" width="32" height="32" aria-hidden="true"><path d="M5 5h10v10H5zM17 5h10v10H17zM5 17h10v10H5zM17 17h10v10H17z" fill="currentColor"/></svg>
       </a>
-      <nav aria-label="Main navigation">
+      <!-- Keep the toggle hidden until its handler is ready, avoiding an inactive control
+           if JavaScript fails. aria-pressed exposes its on/off state without relying on the icon. -->
+      <button class="theme-toggle" type="button" aria-label="Dark theme" aria-pressed="false" hidden>
+        <svg class="moon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M20.3 15.2A8.7 8.7 0 0 1 8.8 3.7a8.7 8.7 0 1 0 11.5 11.5Z"/></svg>
+        <svg class="sun" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg>
+      </button>
+      <button class="menu-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="main-navigation" hidden>
+        <svg class="menu-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        <svg class="close-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m6 6 12 12M6 18 18 6"/></svg>
+      </button>
+      <nav id="main-navigation" aria-label="Main navigation">
         <a href="#intro">Intro</a>
         <a href="#about">About</a>
         <a href="#experience">Experience & training</a>
@@ -36,12 +62,6 @@
         <a href="#education">Education</a>
         <a href="#contact">Contact</a>
       </nav>
-      <!-- Keep the toggle hidden until its handler is ready, avoiding an inactive control
-           if JavaScript fails. aria-pressed exposes its on/off state without relying on the icon. -->
-      <button class="theme-toggle" type="button" aria-label="Dark theme" aria-pressed="false" hidden>
-        <svg class="moon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M20.3 15.2A8.7 8.7 0 0 1 8.8 3.7a8.7 8.7 0 1 0 11.5 11.5Z"/></svg>
-        <svg class="sun" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg>
-      </button>
     </div>
   </header>
 
@@ -50,16 +70,21 @@
   <main id="main" class="container" tabindex="-1">
     <section id="intro" class="intro" aria-labelledby="intro-title">
       <div class="intro-copy">
+        <!-- This decorative index is positioned above the portrait by the mobile grid.
+             Keep it out of the reading order: the section already has a meaningful name. -->
         <span class="section-number" aria-hidden="true">01 /</span>
         <h1 id="intro-title">Amer M. Cabonegro</h1>
         <p class="intro-focus">Aspiring Software Developer</p>
         <p class="intro-summary">I'm an Information Technology graduate with IT Support experience and a PHP/Laravel web development background. I'm strengthening my programming fundamentals and learning AI-assisted development, with the goal of building AI-powered applications using existing models.</p>
       </div>
-      <!-- A relative src stays inside the project URL on GitHub Pages; a leading / would
-           start at the domain root. Keep the file's real dimensions here and let CSS crop it.
-           The alt text identifies the person when the portrait cannot be seen. -->
+      <!-- Relative paths work under GitHub Pages. Proportional WebP variants let the
+           browser choose a resolution for the CSS width and screen density; CSS still
+           controls the crop. Keep this above-the-fold image eager rather than lazy. -->
       <div class="intro-portrait">
-        <img src="assets/images/8R-min.JPG" alt="Portrait of Amer M. Cabonegro" width="3712" height="5568">
+        <img src="assets/images/portrait-560.webp"
+             srcset="assets/images/portrait-280.webp 280w, assets/images/portrait-560.webp 560w, assets/images/portrait-840.webp 840w"
+             sizes="(max-width: 600px) clamp(160px, 48vw, 200px), (max-width: 900px) 224px, clamp(224px, 24vw, 280px)"
+             alt="Portrait of Amer M. Cabonegro" width="560" height="840" loading="eager">
       </div>
     </section>
 
@@ -180,7 +205,7 @@
           <h3>Certificate of Boot Camp Training for Web Development</h3>
           <p>Hivelabs Technologies Corp.</p>
           <p class="entry-meta">Issued <time datetime="2026-05-08">May 8, 2026</time></p>
-          <a class="certificate-link" href="assets/images/Cert-hivelabs-bootcamp-blured.png" target="_blank" rel="noopener noreferrer" aria-label="View larger blurred Boot Camp Training for Web Development certificate (opens in a new tab)">
+          <a class="certificate-link" href="assets/images/Cert-hivelabs-bootcamp-blured.png" target="_blank" rel="noopener noreferrer" aria-label="View larger image (new tab): blurred Boot Camp Training for Web Development certificate">
             <img src="assets/images/Cert-hivelabs-bootcamp-blured.png" alt="Web development bootcamp certificate with partially blurred signatures" width="2000" height="1414" loading="lazy" decoding="async">
             <span>View larger image (new tab) <span aria-hidden="true">&#8599;</span></span>
           </a>
@@ -189,7 +214,7 @@
           <h3>Certificate of On-the-Job Training in Web Development</h3>
           <p>Hivelabs Technologies Corp.</p>
           <p class="entry-meta">Issued <time datetime="2026-07-20">July 20, 2026</time></p>
-          <a class="certificate-link" href="assets/images/Cert-hivelabs-OJT-blured.png" target="_blank" rel="noopener noreferrer" aria-label="View larger blurred On-the-Job Training in Web Development certificate (opens in a new tab)">
+          <a class="certificate-link" href="assets/images/Cert-hivelabs-OJT-blured.png" target="_blank" rel="noopener noreferrer" aria-label="View larger image (new tab): blurred On-the-Job Training in Web Development certificate">
             <img src="assets/images/Cert-hivelabs-OJT-blured.png" alt="Web development OJT certificate with partially blurred signatures" width="2000" height="1414" loading="lazy" decoding="async">
             <span>View larger image (new tab) <span aria-hidden="true">&#8599;</span></span>
           </a>
@@ -198,7 +223,7 @@
           <h3>Certificate of Completion</h3>
           <p>Nauts &amp; Vectors Company, Inc.</p>
           <p class="entry-meta">Issued <time datetime="2022-09-05">September 5, 2022</time></p>
-          <a class="certificate-link" href="assets/images/Cert-navco-blured.png" target="_blank" rel="noopener noreferrer" aria-label="View larger blurred NAVCO Certificate of Completion (opens in a new tab)">
+          <a class="certificate-link" href="assets/images/Cert-navco-blured.png" target="_blank" rel="noopener noreferrer" aria-label="View larger image (new tab): blurred NAVCO Certificate of Completion">
             <img src="assets/images/Cert-navco-blured.png" alt="NAVCO internship completion certificate with a partially blurred signature" width="1197" height="1545" loading="lazy" decoding="async">
             <span>View larger image (new tab) <span aria-hidden="true">&#8599;</span></span>
           </a>

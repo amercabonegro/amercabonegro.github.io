@@ -7,7 +7,7 @@
   --bg: #f7f8f4;
   --surface: #eff1eb;
   --text: #222e28;
-  --muted: #657168;
+  --muted: #59655c;
   --accent: #426a49;
   --line: #d9dfd5;
   --placeholder: #dce2d7;
@@ -60,6 +60,11 @@ nav a { text-decoration: none; color: var(--muted); font-size: .82rem; font-weig
 nav a:hover, nav a:focus-visible { color: var(--text); text-decoration: underline; }
 .theme-toggle { display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 1px solid var(--line); border-radius: 50%; background: transparent; color: var(--text); cursor: pointer; flex-shrink: 0; }
 .theme-toggle:hover { background: var(--surface); }
+.theme-toggle { order: 2; }
+#main-navigation { order: 1; }
+.menu-toggle { display: none; }
+.menu-toggle .close-icon, .menu-toggle[aria-expanded="true"] .menu-icon { display: none; }
+.menu-toggle[aria-expanded="true"] .close-icon { display: block; }
 .sun, [data-theme="dark"] .moon { display: none; }
 [data-theme="dark"] .sun { display: block; }
 /* clamp() combines viewport scaling with size limits: a pure vw size could make
@@ -177,34 +182,45 @@ h2 { font-size: clamp(2rem, 4vw, 3.25rem); line-height: 1.2; }
 .contact-profiles a > span { color: var(--muted); font-size: .8rem; font-weight: 400; }
 .contact-profiles a:hover, .contact-profiles a:focus-visible { text-decoration: underline; text-underline-offset: .25em; }
 
-/* At 900px, navigation needs its own row. The hero can still fit two columns here;
-   its separate breakpoint below follows text space rather than the header's needs.
-   The taller header also needs more anchor-scroll headroom. */
+/* Below 900px, the full link row no longer fits comfortably. A dropdown keeps the
+   controls in one compact row without shrinking text or changing desktop navigation.
+   Without JavaScript, links stay in normal flow so navigation remains available. */
 @media (max-width: 900px) {
-  .header-inner { gap: 1rem; flex-wrap: wrap; padding-block: 1rem; }
-  .theme-toggle { margin-left: auto; }
-  nav { order: 3; width: 100%; justify-content: flex-start; margin: 0; gap: 0 1.5rem; }
-  nav a { padding-block: .55rem; }
-  html { scroll-padding-top: 12rem; }
+  .header-inner { position: relative; gap: .75rem; flex-wrap: wrap; min-height: 72px; padding-block: .75rem; }
+  .theme-toggle { order: 0; margin-left: auto; }
+  #main-navigation { order: 3; width: 100%; margin: 0; align-items: stretch; flex-direction: column; gap: .25rem; }
+  #main-navigation a { display: flex; align-items: center; min-height: 44px; padding: .75rem 1rem; color: var(--text); font-size: .875rem; line-height: 1.5; border-radius: 6px; overflow-wrap: anywhere; }
+  #main-navigation a + a { border-top: 1px solid var(--line); }
+  #main-navigation a:hover, #main-navigation a:focus-visible { background: var(--surface); }
+  /* An inset outline stays visible inside the dropdown's scrollable area. */
+  #main-navigation a:focus-visible { outline-offset: -3px; }
+  .menu-toggle { display: grid; place-items: center; flex-shrink: 0; width: 44px; height: 44px; padding: 0; border: 1px solid var(--line); border-radius: 7px; background: transparent; color: var(--text); cursor: pointer; }
+  .menu-toggle:hover, .menu-toggle[aria-expanded="true"] { background: var(--surface); }
+  /* Normal flow pushes the hero below the menu instead of covering its heading.
+     A viewport-based cap keeps the last links reachable on short landscape screens;
+     vh provides a fallback for browsers without dynamic viewport units. */
+  .navigation-ready #main-navigation { padding: .5rem; max-height: calc(100vh - 6rem); max-height: calc(100dvh - 6rem); overflow-y: auto; background: var(--bg); border: 1px solid var(--line); border-radius: 9px; }
+  html { scroll-padding-top: 6rem; }
   /* A smaller portrait column leaves tablet text readable instead of squeezing it
      into many short lines. Reducing the gap also preserves space for the full name. */
   .intro { grid-template-columns: minmax(0, 1fr) 14rem; gap: 2rem; }
   .split-section { gap: 2rem; }
 }
 
-/* At 760px and below, one centered column gives text enough reading width.
-   Grid rows put the portrait first visually without duplicating the image or introduction
-   in HTML. Screen readers still follow the HTML's text-first reading order; neither
-   grid item contains controls, so this does not reorder keyboard focus. */
-@media (max-width: 760px) {
-  .intro { grid-template-columns: minmax(0, 1fr); justify-items: center; gap: 1.25rem; text-align: center; }
-  .intro-copy { grid-row: 2; width: 100%; max-width: 38rem; }
+/* Use the mobile header breakpoint for the centered hero too. display: contents
+   lets this generic wrapper's children share the hero grid without duplicate HTML.
+   Only visual rows change: assistive technology still gets the identity and summary
+   before the descriptive portrait. There are no controls whose focus order changes. */
+@media (max-width: 900px) {
+  .intro { grid-template-columns: minmax(0, 1fr); justify-items: center; gap: 0; text-align: center; }
+  .intro-copy { display: contents; }
+  .intro-copy > .section-number { grid-row: 1; margin-bottom: 1.25rem; }
   /* Smaller mobile margins keep the portrait, name, and role connected. Use spacing,
      not fixed heights, so wrapped headings and enlarged text can still grow freely. */
-  .intro-copy h1 { margin-block: .75rem .625rem; }
-  .intro-focus { margin-bottom: .75rem; }
-  .intro-summary { margin-inline: auto; }
-  .intro-portrait { grid-row: 1; width: min(100%, 224px); justify-self: center; }
+  .intro-copy h1 { grid-row: 3; max-width: 100%; margin-block: 0 .625rem; }
+  .intro-focus { grid-row: 4; margin-bottom: .75rem; }
+  .intro-summary { grid-row: 5; margin-inline: auto; }
+  .intro-portrait { grid-row: 2; width: min(100%, 224px); justify-self: center; margin-bottom: 1.25rem; }
 }
 
 /* At 600px, multiple content columns become cramped. Stack them and reduce gutters
@@ -212,10 +228,8 @@ h2 { font-size: clamp(2rem, 4vw, 3.25rem); line-height: 1.2; }
 @media (max-width: 600px) {
   .container { width: calc(100% - 2.5rem); }
   .header-inner { min-height: auto; }
-  nav { gap: 0 1.15rem; }
-  nav a { font-size: .77rem; }
   /* Content determines height; smaller padding avoids an unnecessarily tall mobile hero.
-     Keep the single shrinkable column from the 760px rule to handle enlarged text. */
+     Keep the single shrinkable column from the 900px rule to handle enlarged text. */
   .intro { padding-block: 2.5rem; }
   h1 { margin-block: 1rem 2rem; }
   /* Fluid sizing keeps the portrait proportional to the screen, with a 200px cap.

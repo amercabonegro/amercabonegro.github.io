@@ -50,3 +50,67 @@
     });
   });
 })();
+
+document.addEventListener('DOMContentLoaded', () => {
+  const header = document.querySelector('.site-header');
+  const menuToggle = document.querySelector('.menu-toggle');
+  const navigation = document.querySelector('#main-navigation');
+  if (!header || !menuToggle || !navigation) return;
+
+  const mobileLayout = window.matchMedia('(max-width: 900px)');
+
+  // One function keeps the visible menu and button state in sync. aria-expanded
+  // tells assistive technology whether the button's controlled links are revealed.
+  function setMenuOpen(open) {
+    const expanded = mobileLayout.matches && open;
+    menuToggle.setAttribute('aria-expanded', String(expanded));
+    menuToggle.setAttribute('aria-label', expanded ? 'Close navigation menu' : 'Open navigation menu');
+    // hidden also removes collapsed links from keyboard focus and the accessibility tree.
+    navigation.hidden = mobileLayout.matches && !expanded;
+  }
+
+  menuToggle.addEventListener('click', () => {
+    // Keep focus on this disclosure button: Tab reaches the first link naturally,
+    // and Shift+Tab can still reach the theme control. This is not a modal dialog.
+    setMenuOpen(menuToggle.getAttribute('aria-expanded') !== 'true');
+  });
+
+  header.addEventListener('focusout', (event) => {
+    // Dismiss when Tab leaves the header so its expanded sticky area cannot hide
+    // the next focused element. Do not steal focus from the visitor's destination.
+    if (!header.contains(event.relatedTarget)) setMenuOpen(false);
+  });
+
+  navigation.addEventListener('click', (event) => {
+    const link = event.target.closest('a[href^="#"]');
+    if (!link || !mobileLayout.matches) return;
+    // Close after navigation so the dropdown does not cover the chosen section.
+    // Focus the destination before hiding the link that the keyboard user activated.
+    const destination = document.querySelector(link.getAttribute('href'));
+    if (destination) {
+      destination.setAttribute('tabindex', '-1');
+      destination.focus({ preventScroll: true });
+    }
+    setMenuOpen(false);
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && menuToggle.getAttribute('aria-expanded') === 'true') {
+      setMenuOpen(false);
+      menuToggle.focus();
+    }
+  });
+
+  mobileLayout.addEventListener('change', () => {
+    // Reset on resize so desktop links stay visible and mobile starts collapsed.
+    const focusWillHide = mobileLayout.matches && navigation.contains(document.activeElement);
+    const toggleHadFocus = document.activeElement === menuToggle;
+    setMenuOpen(false);
+    if (focusWillHide) menuToggle.focus();
+    if (!mobileLayout.matches && toggleHadFocus) navigation.querySelector('a').focus();
+  });
+
+  setMenuOpen(false);
+  header.classList.add('navigation-ready');
+  menuToggle.hidden = false;
+});
